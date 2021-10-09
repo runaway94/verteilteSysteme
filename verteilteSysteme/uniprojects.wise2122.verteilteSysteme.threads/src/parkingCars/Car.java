@@ -4,8 +4,6 @@ import java.util.Random;
 
 public class Car extends Thread {
 
-	private static final int TIME_LIMIT = 10;
-
 	private final ParkingGarage garage;
 
 	public Car(String licence, ParkingGarage garage) {

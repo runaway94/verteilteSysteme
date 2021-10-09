@@ -3,6 +3,8 @@ package parkingCars;
 public class ParkingGarage {
 
 	private final int amountParkingSpaces;
+	private static final String SYMBOL_EMPTY_SPACE = "[ ] ";
+	private static final String SYMBOL_PARKING_CAR = "[X] ";
 	private int parkingCars;
 
 	public ParkingGarage(int size) {
@@ -34,13 +36,11 @@ public class ParkingGarage {
 		int empty = amountParkingSpaces - parkingCars;
 		int parking = parkingCars;
 		System.out.println(parking + " Plätze belegt, " + empty + " Plätze frei!");
-		String emptySpace = "[ ] ";
-		String takenSpace = "[x] ";
 		for (int i = parking; i > 0; i--) {
-			System.out.print(takenSpace);
+			System.out.print(SYMBOL_PARKING_CAR);
 		}
 		for (int i = empty; i > 0; i--) {
-			System.out.print(emptySpace);
+			System.out.print(SYMBOL_EMPTY_SPACE);
 		}
 		System.out.print("\n\n");
 	}
