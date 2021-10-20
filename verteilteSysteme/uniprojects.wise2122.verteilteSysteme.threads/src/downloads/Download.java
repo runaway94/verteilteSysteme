@@ -58,7 +58,7 @@ public class Download extends Thread
 	
 	
 	private static int getRandTimeLimit(int limit) {
-		return new Random().nextInt(limit) * 10;
+		return new Random().nextInt(limit) * 100;
 	}
 
 
