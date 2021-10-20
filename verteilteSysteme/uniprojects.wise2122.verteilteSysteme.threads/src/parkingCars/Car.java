@@ -27,31 +27,11 @@ public class Car extends Thread {
 
 	private void drive() throws InterruptedException {
 
-		lookForSpace();
-		park();
-
-	}
-
-	private void lookForSpace() throws InterruptedException {
 		sleep(getRandTimeLimit(10));
-		boolean parkCar;
-		synchronized (garage) {
-			parkCar = this.garage.parkCar(this);
-		}
-		if (!parkCar) {
-			drive();
-		}
-	}
-
-	private void park() throws InterruptedException {
+		this.garage.parkCar(this);
 		sleep(getRandTimeLimit(10));
-		boolean leaveGarage;
-		synchronized (garage) {
-			leaveGarage = this.garage.leave(this);
-		}
-		if (!leaveGarage) {
-			park();
-		}
+		this.garage.carLeaves(this);
+
 	}
 
 	private int getRandTimeLimit(int limit) {

@@ -4,30 +4,34 @@ public class ParkingGarage {
 
 	private final int amountParkingSpaces;
 	private int parkingCars;
+	private final Object monitor;
 
 	public ParkingGarage(int size) {
 		this.amountParkingSpaces = size;
 		this.parkingCars = 0;
+		this.monitor = new Object();
 	}
 
 	public void parkCar() {
 		this.parkingCars++;
 	}
 
-	public int getFreeSpaces() {
-		return this.amountParkingSpaces - parkingCars;
-	}
+	public void carLeaves(Car car) {
+		synchronized (monitor) {
+			while (this.parkingCars < 3) {
+				try {
+					System.out.println("Staying in garage: " + car.getName());
+					printFreeSpaces();
+					monitor.wait();
+				} catch (InterruptedException e) {
 
-	public boolean leave(Car car) {
-		if(this.parkingCars < 3) {
-			System.out.println("Staying in garage: " + car.getName());
+				}
+			}
+			this.parkingCars--;
+			System.out.println("Leaving: " + car.getName());
+			monitor.notifyAll();
 			printFreeSpaces();
-			return false;
 		}
-		this.parkingCars--;
-		System.out.println("Leaving: " + car.getName());
-		printFreeSpaces();
-		return true;
 	}
 
 	private void printFreeSpaces() {
@@ -45,17 +49,23 @@ public class ParkingGarage {
 		System.out.print("\n\n");
 	}
 
-	public boolean parkCar(Car car) {
-		if (this.parkingCars < this.amountParkingSpaces) {
+	public void parkCar(Car car) {
+		synchronized (monitor) {
+			while (this.parkingCars == this.amountParkingSpaces) {
+				try {
+					System.out.println("Waiting: " + car.getName());
+					printFreeSpaces();
+					monitor.wait();
+				} catch (InterruptedException e) {
+					// TODO: handle exception
+				}
+			}
+			monitor.notifyAll();
 			this.parkingCars++;
 			System.out.println("Parking: " + car.getName());
 			printFreeSpaces();
-			return true;
+
 		}
-		
-		System.out.println("Waiting: " + car.getName());
-		printFreeSpaces();
-		return false;
 	}
 
 }
