@@ -8,7 +8,6 @@ import java.util.Date;
 
 import uniprojects.wise2122.verteilteSysteme.rmi.server.FrueherkennungsIF;
 import uniprojects.wise2122.verteilteSysteme.rmi.server.entity.Bericht;
-import uniprojects.wise2122.verteilteSysteme.rmi.server.entity.BerichtIF;
 import uniprojects.wise2122.verteilteSysteme.rmi.server.entity.Röntgenbild;
 
 public class UniklinikRegensburg {
@@ -31,7 +30,7 @@ public class UniklinikRegensburg {
 		}
 	}
 
-	public BerichtIF bildPrüfen(Röntgenbild rtgBild) {
+	public Bericht bildPrüfen(Röntgenbild rtgBild) {
 		try {
 			return erkennungsServer.analysieren(rtgBild);
 		} catch (RemoteException e) {
@@ -41,14 +40,9 @@ public class UniklinikRegensburg {
 	}
 
 	public static void main(String args[]) {
-		String name = "Simon";
-		Röntgenbild mock = new Röntgenbild(new Date(), name, new byte[] { 1, 1, 0, 1 });
+		Röntgenbild mock = new Röntgenbild(new Date(), "Simon", new byte[] { 1, 1, 0, 1 });
 		UniklinikRegensburg klinik = new UniklinikRegensburg();
-		BerichtIF bericht = klinik.bildPrüfen(mock);
-		try {
-			System.out.println("Die Diagnose für " + name + " ist: " + bericht.getDiagnose());
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
+		Bericht bericht = klinik.bildPrüfen(mock);
+		System.out.println(bericht.toString());
 	}
 }

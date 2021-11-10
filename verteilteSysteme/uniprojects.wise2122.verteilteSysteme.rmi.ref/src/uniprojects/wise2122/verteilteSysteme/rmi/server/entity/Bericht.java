@@ -1,9 +1,9 @@
 package uniprojects.wise2122.verteilteSysteme.rmi.server.entity;
 
-import java.rmi.RemoteException;
+import java.io.Serializable;
 import java.util.Date;
 
-public class Bericht implements BerichtIF {
+public class Bericht implements Serializable {
 
 	private Date datum;
 	private String diagnose;
@@ -18,9 +18,8 @@ public class Bericht implements BerichtIF {
 		this.diagnose = diagnose;
 		this.weiteresVorgehen = weiteresVorgehen;
 	}
-
-	@Override
-	public Date getDatum() throws RemoteException {
+	
+	public Date getDatum() {
 		return datum;
 	}
 
@@ -28,8 +27,7 @@ public class Bericht implements BerichtIF {
 		this.datum = datum;
 	}
 
-	@Override
-	public String getDiagnose() throws RemoteException {
+	public String getDiagnose() {
 		return diagnose;
 	}
 
@@ -37,8 +35,7 @@ public class Bericht implements BerichtIF {
 		this.diagnose = diagnose;
 	}
 
-	@Override
-	public String getWeiteresVorgehen() throws RemoteException {
+	public String getWeiteresVorgehen() {
 		return weiteresVorgehen;
 	}
 
