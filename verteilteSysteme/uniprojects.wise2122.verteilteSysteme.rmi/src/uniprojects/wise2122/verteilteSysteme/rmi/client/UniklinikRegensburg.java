@@ -4,12 +4,14 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.Date;
 
 import uniprojects.wise2122.verteilteSysteme.rmi.server.FrueherkennungsIF;
 import uniprojects.wise2122.verteilteSysteme.rmi.server.entity.Bericht;
 import uniprojects.wise2122.verteilteSysteme.rmi.server.entity.BerichtIF;
 import uniprojects.wise2122.verteilteSysteme.rmi.server.entity.Röntgenbild;
+import uniprojects.wise2122.verteilteSysteme.rmi.server.entity.RöntgenbildIF;
 
 public class UniklinikRegensburg {
 
@@ -33,7 +35,8 @@ public class UniklinikRegensburg {
 
 	public BerichtIF bildPrüfen(Röntgenbild rtgBild) {
 		try {
-			return erkennungsServer.analysieren(rtgBild);
+			RöntgenbildIF röntgenbildStub = (RöntgenbildIF) UnicastRemoteObject.exportObject(rtgBild, 0);
+			return erkennungsServer.analysieren(röntgenbildStub);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}

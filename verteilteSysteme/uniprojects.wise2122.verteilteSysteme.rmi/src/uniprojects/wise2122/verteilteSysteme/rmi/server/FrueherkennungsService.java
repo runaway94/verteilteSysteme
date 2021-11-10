@@ -9,12 +9,12 @@ import java.util.Date;
 
 import uniprojects.wise2122.verteilteSysteme.rmi.server.entity.Bericht;
 import uniprojects.wise2122.verteilteSysteme.rmi.server.entity.BerichtIF;
-import uniprojects.wise2122.verteilteSysteme.rmi.server.entity.Röntgenbild;
+import uniprojects.wise2122.verteilteSysteme.rmi.server.entity.RöntgenbildIF;
 
 public class FrueherkennungsService implements FrueherkennungsIF {
 
 	@Override
-	public BerichtIF analysieren(Röntgenbild bild) throws RemoteException {
+	public BerichtIF analysieren(RöntgenbildIF bild) throws RemoteException {
 		Date today = new Date();
 		Bericht bericht = new Bericht(today, "gebrochenes Herz", "Eiscreme und Netflix");
 		BerichtIF berichtStub = (BerichtIF) UnicastRemoteObject.exportObject(bericht, 0);

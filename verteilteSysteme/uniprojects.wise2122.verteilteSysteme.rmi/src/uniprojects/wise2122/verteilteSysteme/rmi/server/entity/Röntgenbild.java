@@ -3,7 +3,7 @@ package uniprojects.wise2122.verteilteSysteme.rmi.server.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Röntgenbild implements Serializable {
+public class Röntgenbild implements RöntgenbildIF {
 
 	private Date aufnahmenVom;
 	private transient String patientenName;
@@ -20,6 +20,7 @@ public class Röntgenbild implements Serializable {
 		
 	}
 
+	@Override
 	public Date getAufnahmenVom() {
 		return aufnahmenVom;
 	}
@@ -36,6 +37,7 @@ public class Röntgenbild implements Serializable {
 		this.patientenName = patientenName;
 	}
 
+	@Override
 	public byte[] getRawData() {
 		return rawData;
 	}
