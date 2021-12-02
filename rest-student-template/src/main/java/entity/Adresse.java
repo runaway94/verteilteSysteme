@@ -7,15 +7,13 @@ import jakarta.xml.bind.annotation.XmlRootElement;
 
 import java.util.Objects;
 
-@XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Adresse {
 
 
-    @XmlAttribute
     private String strasse;
     private String ort;
-    private int plz;
+    private String plz;
 
     public Adresse(){}
 
@@ -40,7 +38,7 @@ public class Adresse {
         return Objects.hash(strasse, ort, plz);
     }
 
-    public void setPlz(int plz) {
+    public void setPlz(String plz) {
         this.plz = plz;
     }
 
@@ -52,11 +50,11 @@ public class Adresse {
         return ort;
     }
 
-    public int getPlz() {
+    public String getPlz() {
         return plz;
     }
 
-    public Adresse(String strasse, String ort, int plz) {
+    public Adresse(String strasse, String ort, String plz) {
         this.strasse = strasse;
         this.ort = ort;
         this.plz = plz;

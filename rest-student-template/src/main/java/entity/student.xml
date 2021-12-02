@@ -1,0 +1,9 @@
+<student matrikelNr = "12345">
+    <vorname> Anna</vorname>
+    <nachname> Breithaupt</nachname>
+    <adresse>
+        <strasse>Limpergerstrasse 3</strasse>
+        <plz>93142</plz>
+        <ort>Maxhütte-Haidhof</ort>
+    </adresse>
+</student>

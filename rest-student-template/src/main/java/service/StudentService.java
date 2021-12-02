@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
-
+@Path("studentaffairs")
 public class StudentService {
 
     private static AtomicInteger nextStudentId = new AtomicInteger(1);
@@ -33,24 +33,23 @@ public class StudentService {
     }
 
     @Path("students/{id}")
-  //  @Produces(MediaType.APPLICATION_XML)
+    @Produces(MediaType.APPLICATION_XML)
     @GET
     public Student getStudentById(@PathParam("id") int studentId) {
-        return new Student(studentId, "Anna", "B.", new Adresse("Straße", "Ort", 12345));
-//        Student s = studentDb.get(studentId);
-//        return s;
+        Student s = studentDb.get(studentId);
+        return s;
     }
 
-    @PUT
-    @Path("students")
-    @Consumes(MediaType.APPLICATION_JSON)
-    public Student updateStudentAccount(int studentId, Student newData) {
-        Student s = studentDb.get(studentId);
-        s.setMatrikelNr(newData.getMatrikelNr());
-        s.setVorname(newData.getVorname());
-        s.setNachname(newData.getNachname());
-       return s;
-    }
+//    @PUT
+//    @Path("students")
+//    @Consumes(MediaType.APPLICATION_JSON)
+//    public Student updateStudentAccount(int studentId, Student newData) {
+//        Student s = studentDb.get(studentId);
+//        s.setMatrikelNr(newData.getMatrikelNr());
+//        s.setVorname(newData.getVorname());
+//        s.setNachname(newData.getNachname());
+//       return s;
+//    }
 
     @GET
     @Path("students")
