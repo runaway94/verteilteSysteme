@@ -1,0 +1,64 @@
+#get all students as xml
+GET http://localhost:8081/restapi/studentaffairs/students
+Accept: application/xml
+
+###
+#get all students as json
+GET http://localhost:8081/restapi/studentaffairs/students
+Accept: application/json
+
+
+###
+# add new student
+POST http://localhost:8081/restapi/studentaffairs/students
+Accept: application/json
+Content-Type: application/json
+
+{
+  "vorname": "Anna",
+  "nachname": "Breithaupt",
+  "ects": 999,
+  "anschrift": {
+    "strasse": "Lagestrasse 99",
+    "ort": "Augsburg"
+  }
+}
+
+###
+# add new veranstaltung
+POST http://localhost:8081/restapi/events
+Accept: application/json
+Content-Type: application/json
+
+{
+  "titel": "OTH Campus Fest",
+  "beschreibung": "Cooles Fest an der OTH das wegen Corona nie stattfinden kann :(",
+  "start": "01.07.2021",
+  "ende": "05.07.2021",
+  "owner": "OTH"
+}
+
+###
+# add new veranstaltung
+POST http://localhost:8081/restapi/events
+Accept: application/json
+Content-Type: application/json
+
+{
+  "titel": "OTH Konzert",
+  "beschreibung": "Cooles Konzert an der OTH das wegen Corona nie stattfinden kann :(",
+  "start": "01.08.2021",
+  "ende": "05.08.2021",
+  "owner": "OTH"
+}
+
+
+###
+# get event
+GET http://localhost:8081/restapi/events/5be08fcc-7cdb-4a2e-9215-66fff53d0e46
+Accept: application/json
+
+###
+# get event
+GET http://localhost:8081/restapi/events?tipps=campus+konzert+oth
+Accept: application/json

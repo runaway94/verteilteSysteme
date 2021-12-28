@@ -1,0 +1,6 @@
+app\OTHRestException.class
+service\PruefungsleistungService.class
+service\StudentService.class
+app\Server.class
+app\ServerExceptionMapper.class
+service\VeranstaltungService.class
